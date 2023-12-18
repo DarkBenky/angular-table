@@ -1,0 +1,122 @@
+<div *ngIf="logged">
+  <h1>Username</h1>
+  <input class="username" />
+  <h1>Password</h1>
+  <input class="password" />
+  <button (click)="login()">submit</button>
+</div>
+<div *ngIf="unlogged">
+  <input class="search" />
+  <button (click)="search()">search</button>
+  <button (click)="clear_results()">clear results</button>
+  <button (click)="edit_page()">edit</button>
+  <div>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Lastname</th>
+          <th>Age</th>
+          <th>Grade</th>
+          <th>Courses</th>
+          <th>Last edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of result">
+          <td>{{ student.id }}</td>
+          <td>{{ student.name }}</td>
+          <td>{{ student.last_name}}</td>
+          <td>{{ student.age }}</td>
+          <td>{{ student.grade }}</td>
+          <td>{{ student.last_edit}}</td>
+          <td>
+            <ul>
+              <li *ngFor="let course of student.courses">{{ course }}</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <table *ngIf="edit" border="1">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Last name</th>
+        <th>Age</th>
+        <th>Grade</th>
+        <th>Last edit</th>
+        <th>Courses</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of data">
+        <td>{{ student.id }}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.last_name }}</td>
+        <td>{{ student.age }}</td>
+        <td>{{ student.grade }}</td>
+        <td>{{ student.last_edit}}</td>
+        <td>
+          <ul>
+            <li *ngFor="let course of student.courses">{{ course }}</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button (click)="add_panel()">add panel</button>
+  <div *ngIf="add_panelle">
+    <input value="id" class="id_add" />
+    <input value="name" class="name_add" />
+    <input value="last_name" class="last_name_add" />
+    <input value="age" class="age_add" />
+    <input value="grade" class="grade_add" />
+    <input value="courses" class="courses_add" />
+    <button (click)="add_to_data()">add to data</button>
+  </div>
+  <table *ngIf="!edit" border="1">
+    <thead>
+      <tr>
+        <th></th>
+        <th>ID</th>
+        <th>ID edit</th>
+        <th>Name</th>
+        <th>Name edit</th>
+        <th>Last name</th>
+        <th>Last name edit</th> 
+        <th>Age</th>
+        <th>Age edit</th>
+        <th>Grade</th>
+        <th>Grade edit</th>
+        <th>Courses</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of data">
+        <button (click)="submit_data(student.id)">submit</button>
+        <td>
+          {{ student.id }}
+        </td>
+        <input class="id" />
+        <td>{{ student.name }}</td>
+        <input class="name" />
+        <td>{{ student.last_name}}</td>
+        <input class=last_name>
+        <td>{{ student.age }}</td>
+        <input class="age" />
+        <td>{{ student.grade }}</td>
+        <input class="grade" />
+        <td>
+          <ul>
+            <li *ngFor="let course of student.courses">{{ course }}</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button (click)="log_out()">log out</button>
+</div>
